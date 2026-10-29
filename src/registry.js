@@ -13,6 +13,7 @@ export function createRegistry(){
 export function anchorPosition(anchor,width,height){
  const pad=8,size=42,gap=8;const fallback={x:Math.max(pad,width-76-size),y:Math.max(pad,height-24-size)}
  if(!anchor?.visible||![anchor.x,anchor.y,anchor.width,anchor.height].every(Number.isFinite))return fallback
+ if(anchor.dock==='left'||anchor.dock==='right')return {x:anchor.x,y:anchor.y>=90?anchor.y-anchor.height-gap:anchor.y+anchor.height+gap}
  const left=anchor.x-gap-size,right=anchor.x+anchor.width+gap
  let x=left>=pad?left:right+size<=width-pad?right:Math.max(pad,Math.min(anchor.x,width-size-pad))
  let y=left>=pad||right+size<=width-pad?anchor.y:anchor.y-gap-size
