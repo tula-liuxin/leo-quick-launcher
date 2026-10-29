@@ -1,0 +1,50 @@
+{
+  "name": "leo-quick-launcher",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "description": "可扩展的快捷悬浮球。",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale",
+    "icon.svg",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true
+    }
+  },
+  "engines": {
+    "dsh": ">=0.2.1-rc.3"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  },
+  "author": {
+    "name": "Leo",
+    "url": "https://github.com/tula-liuxin"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tula-liuxin/leo-quick-launcher.git"
+  },
+  "homepage": "https://github.com/tula-liuxin/leo-quick-launcher#readme"
+}
