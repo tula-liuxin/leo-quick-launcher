@@ -1,6 +1,6 @@
 {
   "name": "leo-quick-launcher",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": false,
   "type": "module",
   "description": "可扩展的快捷悬浮球。",

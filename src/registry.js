@@ -11,11 +11,15 @@ export function createRegistry(){
  }
 }
 export function anchorPosition(anchor,width,height){
- const pad=8,size=42,gap=8;const fallback={x:Math.max(pad,width-76-size),y:Math.max(pad,height-24-size)}
+ const pad=8,size=42,gap=8,step=size+gap
+ const fallback={x:Math.max(pad,width-76-size),y:Math.max(pad,height-24-size)}
  if(!anchor?.visible||![anchor.x,anchor.y,anchor.width,anchor.height].every(Number.isFinite))return fallback
- if(anchor.dock==='left'||anchor.dock==='right')return {x:anchor.x,y:anchor.y>=90?anchor.y-anchor.height-gap:anchor.y+anchor.height+gap}
+ const clampX=n=>Math.max(pad,Math.min(n,width-size-pad)),clampY=n=>Math.max(pad,Math.min(n,height-size-pad))
+ const dock=anchor.dock
+ // 贴边态：跟鲸鱼一起贴进边缘（左/右=竖排柱；上/下=横排行），hover 展开时鲸鱼 anchor 变化会自动带着一起滑出
+ if(dock==='left'||dock==='right')return {x:anchor.x,y:clampY(anchor.y-step)}
  const left=anchor.x-gap-size,right=anchor.x+anchor.width+gap
  let x=left>=pad?left:right+size<=width-pad?right:Math.max(pad,Math.min(anchor.x,width-size-pad))
  let y=left>=pad||right+size<=width-pad?anchor.y:anchor.y-gap-size
- return {x:Math.max(pad,Math.min(x,width-size-pad)),y:Math.max(pad,Math.min(y,height-size-pad))}
+ return {x:clampX(x),y:clampY(y)}
 }
