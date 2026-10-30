@@ -1,6 +1,6 @@
 {
   "name": "leo-quick-launcher",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": false,
   "type": "module",
   "description": "可扩展的快捷悬浮球。",
@@ -33,7 +33,8 @@
   "license": "MIT",
   "scripts": {
     "build": "node build.mjs",
-    "test": "node --test test/*.test.mjs"
+    "test": "node --test test/*.test.mjs",
+    "verify": "npm run test"
   },
   "devDependencies": {
     "esbuild": "0.28.2"
